@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
     <script type="text/javascript">
@@ -21,7 +22,6 @@
                 }
             });
         }
-
         function validateform() {
             var question1 = document.uSATsurvey.Radiogroup1.value;
             var question2 = document.uSATsurvey.Radiogroup2.value;
@@ -46,38 +46,50 @@
             var question16 = document.getElementById('question16_Text').value;
             var question17 = document.getElementById('question17_Text').value;
             var question18 = document.getElementById('question18_Text').value;
-            var emailAddress = document.uSATsurvey.emailadd.value;
+            var emailAddress = document.uSATsurvey.emailAddress.value;
 
-            document.controller.setValue('/ctx/vars/@question1', escapeXmlStr(document.getElementById('radiogroup1').value), 'question1');
-            document.controller.setValue('/ctx/vars/@question2', escapeXmlStr(document.getElementById('radiogroup2').value), 'question2');
-            document.controller.setValue('/ctx/vars/@question3', escapeXmlStr(document.getElementById('radiogroup3').value), 'question3');
-            document.controller.setValue('/ctx/vars/@question4_1', escapeXmlStr(document.getElementById('radiogroup4_1').value), 'question4_1');
-            document.controller.setValue('/ctx/vars/@question4_2', escapeXmlStr(document.getElementById('radiogroup4_2').value), 'question4_2');
-            document.controller.setValue('/ctx/vars/@question4_3', escapeXmlStr(document.getElementById('radiogroup4_3').value), 'question4_3');
-            document.controller.setValue('/ctx/vars/@question4_4', escapeXmlStr(document.getElementById('radiogroup4_4').value), 'question4_4');
-            document.controller.setValue('/ctx/vars/@question4_5', escapeXmlStr(document.getElementById('radiogroup4_5').value), 'question4_5');
-            document.controller.setValue('/ctx/vars/@question4_6', escapeXmlStr(document.getElementById('radiogroup4_6').value), 'question4_6');
-            document.controller.setValue('/ctx/vars/@question5', escapeXmlStr(document.getElementById('question5_Text').value), 'question5');
-            document.controller.setValue('/ctx/vars/@question6', escapeXmlStr(document.getElementById('radiogroup6').value), 'question6');
-            document.controller.setValue('/ctx/vars/@question7', escapeXmlStr(document.getElementById('radiogroup7').value), 'question7');
-            document.controller.setValue('/ctx/vars/@question8', escapeXmlStr(document.getElementById('radiogroup8').value), 'question8');
-            document.controller.setValue('/ctx/vars/@question9', escapeXmlStr(document.getElementById('question9_Text').value), 'question9');
-            document.controller.setValue('/ctx/vars/@question10', escapeXmlStr(document.getElementById('radiogroup10').value), 'question10');
-            document.controller.setValue('/ctx/vars/@question11', escapeXmlStr(document.getElementById('radiogroup11').value), 'question11');
-            document.controller.setValue('/ctx/vars/@question12', escapeXmlStr(document.getElementById('radiogroup12').value), 'question12');
-            document.controller.setValue('/ctx/vars/@question13', escapeXmlStr(document.getElementById('question13_Text').value), 'question13');
-            document.controller.setValue('/ctx/vars/@question14', escapeXmlStr(document.getElementById('radiogroup14').value), 'question14');
-            document.controller.setValue('/ctx/vars/@question15', escapeXmlStr(document.getElementById('radiogroup15').value), 'question15');
-            document.controller.setValue('/ctx/vars/@question16', escapeXmlStr(document.getElementById('question16_Text').value), 'question16');
-            document.controller.setValue('/ctx/vars/@question17', escapeXmlStr(document.getElementById('question17_Text').value), 'question17');
-            document.controller.setValue('/ctx/vars/@question18', escapeXmlStr(document.getElementById('question18_Text').value), 'question18');
-            document.controller.setValue('/ctx/vars/@emailAddress', escapeXmlStr(document.getElementById('emailadd').value), 'emailAddress');
+            const emailAddressPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var errormsg = '';
+            if (question1 == '' || question2 == '' || question3 == '' || question4_1 == '' || question4_2 == '' || question4_3 == '' ||
+                question4_4 == '' || question4_5 == '' || question4_6 == '' || question6 == '' || question7 == '' || question8 == '' ||
+                question10 == '' || question11 == '' || question12 == '' || question14 == '' || question15 == '') {
+                errormsg += 'Please validate if all the required(*) questions have been awnsered, except the optional ones.<br/>';
 
+                if (errormsg != '') {
+                    var div = document.getElementById('validation_status');
+                    $('#validation_status').css('display', 'block');
+                    div.innerHTML = errormsg;
+                    return false;
+                }
+            } else {
+                document.controller.setValue('/ctx/vars/@question1', escapeXmlStr(document.getElementById('Radiogroup1').value), 'Question1');
+                document.controller.setValue('/ctx/vars/@question2', escapeXmlStr(document.getElementById('Radiogroup2').value), 'Question2');
+                document.controller.setValue('/ctx/vars/@question3', escapeXmlStr(document.getElementById('Radiogroup2').value), 'Question3');
+                document.controller.setValue('/ctx/vars/@question4_1', escapeXmlStr(document.getElementById('Radiogroup4_1').value), 'Question4_1');
+                document.controller.setValue('/ctx/vars/@question4_2', escapeXmlStr(document.getElementById('Radiogroup4_2').value), 'Question4_2');
+                document.controller.setValue('/ctx/vars/@question4_3', escapeXmlStr(document.getElementById('Radiogroup4_3').value), 'Question4_3');
+                document.controller.setValue('/ctx/vars/@question4_4', escapeXmlStr(document.getElementById('Radiogroup4_4').value), 'Question4_4');
+                document.controller.setValue('/ctx/vars/@question4_5', escapeXmlStr(document.getElementById('Radiogroup4_5').value), 'Question4_5');
+                document.controller.setValue('/ctx/vars/@question4_6', escapeXmlStr(document.getElementById('Radiogroup4_6').value), 'Question4_6');
+                document.controller.setValue('/ctx/vars/@question5', escapeXmlStr(document.getElementById('Radiogroup5').value), 'Question5');
+                document.controller.setValue('/ctx/vars/@question6', escapeXmlStr(document.getElementById('Radiogroup6').value), 'Question6');
+                document.controller.setValue('/ctx/vars/@question7', question7);
+                document.controller.setValue('/ctx/vars/@question8', question8);
+                document.controller.setValue('/ctx/vars/@question9', question9);
+                document.controller.setValue('/ctx/vars/@question10', question10);
+                document.controller.setValue('/ctx/vars/@question11', question11);
+                document.controller.setValue('/ctx/vars/@question12', question12);
+                document.controller.setValue('/ctx/vars/@question13', question13);
+                document.controller.setValue('/ctx/vars/@question14', question14);
+                document.controller.setValue('/ctx/vars/@question15', question15);
+                document.controller.setValue('/ctx/vars/@question16', question16);
+                document.controller.setValue('/ctx/vars/@question17', question17);
+                document.controller.setValue('/ctx/vars/@question18', question18, 'question18');
+                document.controller.setValue('/ctx/vars/@emailAddress', document.getElementById('emailAdd').value), 'emailAddress';
 
-            return document.controller.submit('next', '')
+                return document.controller.submit('next', '')
+            }
         }
-
-
 
 
     </script>
@@ -103,12 +115,43 @@
             resize: vertical;
         }
 
+        input[type='radio'] {
+            accent-color: green;
+        }
+
+        input[type=radio]:checked+label {
+            color: green;
+        }
+
         select {
             width: 25%;
         }
 
         label {
             font-weight: normal;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        h5 {
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        ol {
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: 0 auto;
+        }
+
+        li::marker {
+            font-size: 16px;
+        }
+
+        li p {
+            font-size: 16px;
         }
 
         .text-center {
@@ -146,28 +189,7 @@
                 0px -4px 10px rgba(255, 255, 255, 0.3);
         }
 
-        p {
-            margin-top: 10px;
-        }
 
-        h5 {
-            font-style: italic;
-            font-size: 0.9em;
-        }
-
-        ol {
-            padding-left: 20px;
-            padding-right: 20px;
-            margin: 0 auto;
-        }
-
-        li::marker {
-            font-size: 16px;
-        }
-
-        li p {
-            font-size: 16px;
-        }
 
         .email {
             width: 40%;
@@ -225,6 +247,28 @@
             border-radius: 4px;
             padding: 15px;
             margin: 10px 0px 20px 0px;
+        }
+
+        .required {
+            color: red;
+        }
+
+
+        #validation_status {
+            background: #FFFFC9 url(http://dell-mid-stage1.campaign.adobe.com/res/dell_mid_stage1/b769f55356b0416c86c1158dda58e1f7.png) no-repeat 10px 10px;
+            border: 1px solid #d1cec5;
+            padding: 12px 12px 12px 40px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            color: #444;
+            margin-top: 0px 30px 0px 30px;
+            background-size: 20px 20px;
+            display: none;
+        }
+
+        .validation-div {
+            margin-top: 12px
         }
 
 
@@ -294,8 +338,7 @@
 
                     <div>
                         <li>
-                            <p>How satisfied are you overall with support for Adobe Campaign?</p>
-
+                            <p>How satisfied are you overall with support for Adobe Campaign?<span class="required">*</span></p>
                             <div><input id="radiogroup1" name="Radiogroup1" type="radio" value="Very Satisfied" />
                                 <label>Very Satisfied</label>
                             </div>
@@ -305,9 +348,8 @@
                             <div><input id="radiogroup1" name="Radiogroup1" type="radio" value="Neutral" />
                                 <label>Neutral</label>
                             </div>
-                            <div><input id="radiogroup1" name="Radiogroup1" type="radio"
-                                    value="Somewhat Dissatisfied" />
-                                <label> Somewhat Dissatisfied</label>
+                            <div><input id="radiogroup1" name="Radiogroup1" type="radio" value="Somewhat Dissatisfied" />
+                                <label>Somewhat Dissatisfied</label>
                             </div>
                             <div><input id="radiogroup1" name="Radiogroup1" type="radio" value="Very Dissatisfied" />
                                 <label>Very Dissatisfied</label>
@@ -318,7 +360,8 @@
                     <div>
                         <li>
                             <p>Over the past quarter, how satisfied are you with the support staff&rsquo;s ability to
-                                resolve Incidents for Adobe Campaign in a timely fashion?</p>
+                                resolve Incidents for Adobe Campaign in a timely fashion?<span class="required">*</span>
+                            </p>
                             <div><input id="radiogroup2" name="Radiogroup2" type="radio" value="Very Satisfied" />
                                 <label>Very Satisfied</label>
                             </div>
@@ -328,8 +371,7 @@
                             <div><input id="radiogroup2" name="Radiogroup2" type="radio" value="Neutral" />
                                 <label>Neutral</label>
                             </div>
-                            <div><input id="radiogroup2" name="Radiogroup2" type="radio"
-                                    value="Somewhat Dissatisfied" />
+                            <div><input id="radiogroup2" name="Radiogroup2" type="radio" value="Somewhat Dissatisfied" />
                                 <label> Somewhat Dissatisfied </label>
                             </div>
                             <div><input id="radiogroup2" name="Radiogroup2" type="radio" value="Very Dissatisfied" />
@@ -343,7 +385,7 @@
                         <li>
                             <p>If your incident with Adobe Campaign was not resolved, did support staff provide next
                                 steps
-                                or direct you to a resource who could help?</p>
+                                or direct you to a resource who could help?<span class="required">*</span></p>
                             <div><input id="radiogroup3" name="Radiogroup3" type="radio" value="Yes" /> <label> Yes
                                 </label></div>
                             <div><input id="radiogroup3" name="Radiogroup3" type="radio" value="No" /> <label> No
@@ -357,7 +399,7 @@
 
                     <div>
                         <li>
-                            <p>Please rate the Adobe Campaign support staff on the following attributes. </p>
+                            <p>Please rate the Adobe Campaign support staff on the following attributes.<span class="required">*</span></p>
                             <table class="demo question4box"" >
                             <tr>
                                 <td class=" td_sel">&nbsp;</td>
@@ -369,92 +411,62 @@
                                 </tr>
                                 <tr>
                                     <td>Responsiveness</td>
-                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio"
-                                            value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio"
-                                            value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio"
-                                            value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio"
-                                            value="Very Good" />
+                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio" value="Poor" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio" value="Fair" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio" value="Good" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio" value="Very Good" />
                                     </td>
-                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio"
-                                            value="Excellent" />
+                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio" value="Excellent" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Communication</td>
-                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio"
-                                            value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio"
-                                            value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio"
-                                            value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio"
-                                            value="Very Good" />
+                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio" value="Poor" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio" value="Fair" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio" value="Good" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio" value="Very Good" />
                                     </td>
-                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio"
-                                            value="Excellent" />
+                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio" value="Excellent" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Professionalism</td>
-                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio"
-                                            value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio"
-                                            value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio"
-                                            value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio"
-                                            value="Very Good" />
+                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio" value="Poor" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio" value="Fair" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio" value="Good" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio" value="Very Good" />
                                     </td>
-                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio"
-                                            value="Excellent" />
+                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio" value="Excellent" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Politeness</td>
-                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio"
-                                            value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio"
-                                            value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio"
-                                            value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio"
-                                            value="Very Good" />
+                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio" value="Poor" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio" value="Fair" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio" value="Good" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio" value="Very Good" />
                                     </td>
-                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio"
-                                            value="Excellent" />
+                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio" value="Excellent" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Knowledge of the problem</td>
-                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio"
-                                            value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio"
-                                            value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio"
-                                            value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio"
-                                            value="Very Good" />
+                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio" value="Poor" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio" value="Fair" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio" value="Good" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio" value="Very Good" />
                                     </td>
-                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio"
-                                            value="Excellent" />
+                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio" value="Excellent" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Efficiency in solving the problem</td>
-                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio"
-                                            value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio"
-                                            value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio"
-                                            value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio"
-                                            value="Very Good" />
+                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio" value="Poor" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio" value="Fair" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio" value="Good" /></td>
+                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio" value="Very Good" />
                                     </td>
-                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio"
-                                            value="Excellent" />
+                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio" value="Excellent" />
                                     </td>
                                 </tr>
                                 <tbody>
@@ -464,8 +476,7 @@
                     <div>
                         <li>
                             <p>Please provide any additional feedback you have regarding Adobe Campaign support.</p>
-                            <div><textarea name="Question5_text" class="form-control" id="question5_Text" rows="4"
-                                    maxlength="250"></textarea></div>
+                            <div><textarea name="Question5_text" class="form-control" id="question5_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea></div>
                         </li>
                     </div>
                     <hr />
@@ -474,24 +485,27 @@
                     <hr />
                     <div>
                         <li>
-                            <p>How satisfied are you with the ease of use of Adobe Campaign?</p>
-                            <div><input id="radiogroup6" name="Radiogroup6" type="radio" value="Very Satisfied" />
-                                <label>
-                                    Very Satisfied </label>
+                            <p>How satisfied are you with the ease of use of Adobe Campaign?<span class="required">*</span>
+                            </p>
+                            <div>
+                                <input id="radiogroup6" name="Radiogroup6" type="radio" value="Very Satisfied" />
+                                <label>Very Satisfied</label>
                             </div>
-                            <div><input id="radiogroup6" name="Radiogroup6" type="radio" value="Somewhat Satisfied" />
-                                <label>
-                                    Somewhat Satisfied </label>
+                            <div>
+                                <input id="radiogroup6" name="Radiogroup6" type="radio" value="Somewhat Satisfied" />
+                                <label>Somewhat Satisfied </label>
                             </div>
-                            <div><input id="radiogroup6" name="Radiogroup6" type="radio" value="Neutral" /> <label>
-                                    Neutral </label></div>
-                            <div><input id="radiogroup6" name=" Radiogroup6" type="radio"
-                                    value="Somewhat Dissatisfied" /> <label>
-                                    Somewhat Dissatisfied </label>
+                            <div>
+                                <input id="radiogroup6" name="Radiogroup6" type="radio" value="Neutral" />
+                                <label>Neutral </label>
                             </div>
-                            <div><input id="radiogroup6" name="Radiogroup6" type="radio" value="Very Dissatisfied" />
-                                <label>
-                                    Very Dissatisfied </label>
+                            <div>
+                                <input id="radiogroup6" name=" Radiogroup6" type="radio" value="Somewhat Dissatisfied" />
+                                <label>Somewhat Dissatisfied </label>
+                            </div>
+                            <div>
+                                <input id="radiogroup6" name="Radiogroup6" type="radio" value="Very Dissatisfied" />
+                                <label>Very Dissatisfied </label>
                             </div>
                         </li>
                     </div>
@@ -500,7 +514,7 @@
                             <p>How quickly are you able to find the features or objects in Adobe Campaign related to
                                 your
                                 job
-                                function?</p>
+                                function?<span class="required">*</span></p>
                             <div><input id="radiogroup7" name="Radiogroup7" type="radio" value="Very quickly" /> <label>
                                     Very quickly </label></div>
                             <div><input id="radiogroup7" name="Radiogroup7" type="radio" value="Somewhat quickly" />
@@ -519,7 +533,7 @@
                     </div>
                     <div>
                         <li>
-                            <p>How often do you have issues with the application when using Adobe Campaign?</p>
+                            <p>How often do you have issues with the application when using Adobe Campaign?<span class="required">*</span></p>
                             <div><input id="radiogroup8" name="Radiogroup8" type="radio" value="Always" /> <label>
                                     Always </label>
                             </div>
@@ -538,8 +552,7 @@
                         <li>
                             <p>Please provide any additional feedback you have regarding Adobe Campaign ease of use.
                             </p>
-                            <div><textarea name="Question9_text" class="form-control" id="question9_Text" rows="4"
-                                    maxlength="250"></textarea>
+                            <div><textarea name="Question9_text" class="form-control" id="question9_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea>
                             </div>
                         </li>
                     </div>
@@ -550,7 +563,7 @@
                     <hr />
                     <div>
                         <li>
-                            <p>How satisfied are you with the current features and capabilities of Adobe Campaign?</p>
+                            <p>How satisfied are you with the current features and capabilities of Adobe Campaign?<span class="required">*</span></p>
                             <div><input id="radiogroup10" name="Radiogroup10" type="radio" value="Very satisfied " />
                                 <label> Very Satisfied </label>
                             </div>
@@ -560,8 +573,7 @@
                             <div><input id="radiogroup10" name="Radiogroup10" type="radio" value="Neutral" /> <label>
                                     Neutral
                                 </label></div>
-                            <div><input id="radiogroup10" name="Radiogroup10" type="radio"
-                                    value="Somewhat Dissatisfied" />
+                            <div><input id="radiogroup10" name="Radiogroup10" type="radio" value="Somewhat Dissatisfied" />
                                 <label> Somewhat Dissatisfied </label>
                             </div>
                             <div><input id="radiogroup10" name="Radiogroup10" type="radio" value="Very Dissatisfied" />
@@ -574,7 +586,7 @@
                             <p>How satisfied are you with the testing and deployment of new features and capabilities
                                 for
                                 Adobe
-                                Campaign?</p>
+                                Campaign?<span class="required">*</span></p>
                             <div><input id="radiogroup11" name="Radiogroup11" type="radio" value="Very satisfied" />
                                 <label> Very Satisfied </label>
                             </div>
@@ -584,8 +596,7 @@
                             <div><input id="radiogroup11" name="Radiogroup11" type="radio" value="Neutral" />
                                 <label> Neutral </label>
                             </div>
-                            <div><input id="radiogroup11" name="Radiogroup11" type="radio"
-                                    value="Somewhat Dissatisfied" />
+                            <div><input id="radiogroup11" name="Radiogroup11" type="radio" value="Somewhat Dissatisfied" />
                                 <label> Somewhat Dissatisfied
                                 </label>
                             </div>
@@ -598,7 +609,7 @@
                     <div>
                         <li>
                             <p>How satisfied are you regarding the time it takes to develop new features and
-                                capabilities for Adobe Campaign once an intake has been approved?</p>
+                                capabilities for Adobe Campaign once an intake has been approved?<span class="required">*</span></p>
                             <div><input id="radiogroup12" name="Radiogroup12" type="radio" value="Very satisfied" />
                                 <label> Very Satisfied </label>
                             </div>
@@ -608,8 +619,7 @@
                             <div><input id="radiogroup12" name="Radiogroup12" type="radio" value="Neutral" />
                                 <label> Neutral </label>
                             </div>
-                            <div><input id="radiogroup12" name="Radiogroup12" type="radio"
-                                    value="Somewhat Dissatisfied" />
+                            <div><input id="radiogroup12" name="Radiogroup12" type="radio" value="Somewhat Dissatisfied" />
                                 <label> Somewhat Dissatisfied </label>
                             </div>
                             <div><input id="radiogroup12" name="Radiogroup12" type="radio" value="Very Dissatisfied" />
@@ -623,10 +633,9 @@
                                 Campaign.
                                 Are
                                 there features or capabilities missing in Adobe Campaign that would make your job
-                                easier?
+                                easier?<span class="required">*</span>
                             </p>
-                            <div><textarea name="Question13_text" class="form-control" id="question13_Text" rows="4"
-                                    maxlength="250"></textarea></div>
+                            <div><textarea name="Question13_text" class="form-control" id="question13_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea></div>
                         </li>
                     </div>
                     <h3>Overall</h3>
@@ -634,7 +643,8 @@
                     <hr />
                     <div>
                         <li>
-                            <p>How satisfied are you with the Adobe Campaign application?</p>
+                            <p>How satisfied are you with the Adobe Campaign application?<span class="required">*</span>
+                            </p>
                             <div><input id="radiogroup14" name="Radiogroup14" type="radio" value="Very satisfied " />
                                 <label> Very Satisfied </label>
                             </div>
@@ -644,8 +654,7 @@
                             <div><input id="radiogroup14" name="Radiogroup14" type="radio" value="Neutral" /> <label>
                                     Neutral
                                 </label></div>
-                            <div><input id="radiogroup14" name="Radiogroup14" type="radio"
-                                    value="Somewhat Dissatisfied" />
+                            <div><input id="radiogroup14" name="Radiogroup14" type="radio" value="Somewhat Dissatisfied" />
                                 <label> Somewhat Dissatisfied </label>
                             </div>
                             <div><input id="radiogroup14" name="Radiogroup14" type="radio" value="Very Dissatisfied" />
@@ -655,18 +664,15 @@
                     </div>
                     <div>
                         <li>
-                            <p>How long have you been using Adobe Campaign at Dell?</p>
-                            <div><input id="radiogroup15" name="Radiogroup15" type="radio" value="Less than 6 months" />
-                                <label>
-                                    Less than 1 year </label>
+                            <p>How long have you been using Adobe Campaign at Dell?<span class="required">*</span></p>
+                            <div><input id="radiogroup15" name="Radiogroup15" type="radio" value="Less than 1 year" />
+                                <label>Less than 1 year</label>
                             </div>
-                            <div><input id="radiogroup15" name="Radiogroup15" type="radio"
-                                    value="1 year to less than 3 years" /> <label>
+                            <div><input id="radiogroup15" name="Radiogroup15" type="radio" value="1 year to less than 3 years" /> <label>
                                     1
                                     year
                                     to less than 3 years </label></div>
-                            <div><input id="radiogroup15" name="Radiogroup15" type="radio"
-                                    value="3 years to less than 5 years" /> <label>
+                            <div><input id="radiogroup15" name="Radiogroup15" type="radio" value="3 years to less than 5 years" /> <label>
                                     3
                                     years
                                     to less than 5 years </label></div>
@@ -675,22 +681,19 @@
                     <div>
                         <li>
                             <p>What is the best thing about Adobe Campaign?</p>
-                            <div><textarea name="Question16_text" class="form-control" id="question16_Text" rows="4"
-                                    maxlength="250"></textarea></div>
+                            <div><textarea name="Question16_text" class="form-control" id="question16_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea></div>
                         </li>
                     </div>
                     <div>
                         <li>
                             <p>What is the worst thing about Adobe Campaign?</p>
-                            <div><textarea name="Question17_text" class="form-control" id="question17_Text" rows="4"
-                                    maxlength="250"></textarea></div>
+                            <div><textarea name="Question17_text" class="form-control" id="question17_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea></div>
                         </li>
                     </div>
                     <div>
                         <li>
                             <p>If you have any other questions or feedback let us know:</p>
-                            <div><textarea name="Question18_text" class="form-control" id="question18_Text" rows="4"
-                                    maxlength="250"></textarea></div>
+                            <div><textarea name="Question18_text" class="form-control" id="question18_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea></div>
                         </li>
                     </div>
                 </ol>
@@ -705,16 +708,15 @@
                         below.
                         (Optional)</h5>
                     <div>
-                        <input name="emailadd" class="form-control email" id="emailAdd" maxlength="250"
-                            placeholder="e-mail@domain.com" />
+                        <input name="emailAddress" class="form-control email" id="emailAdd" maxlength="250" placeholder="e-mail@domain.com" />
                     </div>
                 </div>
-                <input class="submit_button1" id="submit_button" onclick="return validateform();" type="button"
-                    value="Submit" data-nl-transition="next" data-nl-bindto="action" data-nl-action="next" />
+                <div class="col-md-12 validation-div" id="validation_status"></div>
+                <input class="submit_button1" id="submit_button" onclick="return validateform();" type="button" value="Submit" data-nl-transition="next" data-nl-bindto="action" data-nl-action="next" />
                 <div class="clear"></div>
         </form>
     </div>
-    </div>
+
 </body>
 
 </html>
