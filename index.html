@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
     <script type="text/javascript">
         function escapeXmlStr(inputValue) {
             return inputValue.replace(/[<>&'"]/g, function (c) {
                 switch (c) {
-                    case '<': return '<';
-                    case '>': return '>';
-                    case '&': return '&';
+                    case '<': return '&lt';
+                    case '>': return '&gt';
+                    case '&': return '&amp';
                     case '\'': return '&apos;';
-                    case '"': return '"';
+                    case '"': return '&quot';
                 }
             });
         }
+
         function validateform() {
             var question1 = document.uSATsurvey.Radiogroup1.value;
             var question2 = document.uSATsurvey.Radiogroup2.value;
@@ -32,65 +32,108 @@
             var question4_4 = document.uSATsurvey.Radiogroup4_4.value;
             var question4_5 = document.uSATsurvey.Radiogroup4_5.value;
             var question4_6 = document.uSATsurvey.Radiogroup4_6.value;
-            var question5 = document.getElementById('question5_Text').value;
+            var question5 = document.uSATsurvey.Question5_text.value;
             var question6 = document.uSATsurvey.Radiogroup6.value;
             var question7 = document.uSATsurvey.Radiogroup7.value;
             var question8 = document.uSATsurvey.Radiogroup8.value;
-            var question9 = document.getElementById('question9_Text').value;
+            var question9 = document.uSATsurvey.Question9_text.value;
             var question10 = document.uSATsurvey.Radiogroup10.value;
             var question11 = document.uSATsurvey.Radiogroup11.value;
             var question12 = document.uSATsurvey.Radiogroup12.value;
-            var question13 = document.getElementById('question13_Text').value;
+            var question13 = document.uSATsurvey.Question13_text.value;
             var question14 = document.uSATsurvey.Radiogroup14.value;
             var question15 = document.uSATsurvey.Radiogroup15.value;
-            var question16 = document.getElementById('question16_Text').value;
-            var question17 = document.getElementById('question17_Text').value;
-            var question18 = document.getElementById('question18_Text').value;
+            var question16 = document.uSATsurvey.Question16_text.value;
+            var question17 = document.uSATsurvey.Question17_text.value;
+            var question18 = document.uSATsurvey.Question18_text.value;
             var emailAddress = document.uSATsurvey.emailAddress.value;
 
-            const emailAddressPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             var errormsg = '';
-            if (question1 == '' || question2 == '' || question3 == '' || question4_1 == '' || question4_2 == '' || question4_3 == '' ||
-                question4_4 == '' || question4_5 == '' || question4_6 == '' || question6 == '' || question7 == '' || question8 == '' ||
-                question10 == '' || question11 == '' || question12 == '' || question14 == '' || question15 == '') {
-                errormsg += 'Please validate if all the required(*) questions have been awnsered, except the optional ones.<br/>';
+            if (question1 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad1').css("color", "red");
+                document.getElementById("radiogroup1").focus();
+            } else if (question2 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad2').css("color", "red");
+                document.getElementById("radiogroup2").focus();
+            } else if (question3 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad3').css("color", "red");
+                document.getElementById("radiogroup3").focus();
+            } else if (question4_1 == '' || question4_2 == '' || question4_3 == '' || question4_4 == '' || question4_5 == '' || question4_6 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad4').css("color", "red");
+                document.getElementById("radiogroup4_1").focus();
+            } else if (question6 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad6').css("color", "red");
+                document.getElementById("radiogroup6").focus();
+            } else if (question7 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad7').css("color", "red");
+                document.getElementById("radiogroup7").focus();
+            } else if (question8 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad8').css("color", "red");
+                document.getElementById("radiogroup8").focus();
+            } else if (question10 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad10').css("color", "red");
+                document.getElementById("radiogroup10").focus();
+            } else if (question11 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad11').css("color", "red");
+                document.getElementById("radiogroup11").focus();
+            } else if (question12 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad12').css("color", "red");
+                document.getElementById("radiogroup12").focus();
+            } else if (question14 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad14').css("color", "red");
+                document.getElementById("radiogroup14").focus();
+            } else if (question15 == '') {
+                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+                $('#rad15').css("color", "red");
+                document.getElementById("radiogroup15").focus();
+            }
+            if (errormsg != '') {
+                var div = document.getElementById('validation_status');
+                $('#validation_status').css('display', 'block');
+                div.innerHTML = errormsg;
+                return false;
+            }
+            else {
+                document.controller.setValue('/ctx/vars/@question1', question1, 'question1');
+                document.controller.setValue('/ctx/vars/@question2', question2, 'question2');
+                document.controller.setValue('/ctx/vars/@question3', question3, 'question3');
+                document.controller.setValue('/ctx/vars/@question4_1', question4_1, 'question4_1');
+                document.controller.setValue('/ctx/vars/@question4_2', question4_2, 'question4_2');
+                document.controller.setValue('/ctx/vars/@question4_3', question4_3, 'question4_3');
+                document.controller.setValue('/ctx/vars/@question4_4', question4_4, 'question4_4');
+                document.controller.setValue('/ctx/vars/@question4_5', question4_5, 'question4_5');
+                document.controller.setValue('/ctx/vars/@question4_6', question4_6, 'question4_6');
+                document.controller.setValue('/ctx/vars/@question6', question6, 'question6');
+                document.controller.setValue('/ctx/vars/@question7', question7, 'question7');
+                document.controller.setValue('/ctx/vars/@question8', question8, 'question8');
+                document.controller.setValue('/ctx/vars/@question10', question10, 'question10');
+                document.controller.setValue('/ctx/vars/@question11', question11, 'question11');
+                document.controller.setValue('/ctx/vars/@question12', question12, 'question12');
+                document.controller.setValue('/ctx/vars/@question14', question14, 'question14');
+                document.controller.setValue('/ctx/vars/@question15', question15, 'question15');
 
-                if (errormsg != '') {
-                    var div = document.getElementById('validation_status');
-                    $('#validation_status').css('display', 'block');
-                    div.innerHTML = errormsg;
-                    return false;
-                }
-            } else {
-                document.controller.setValue('/ctx/vars/@question1', escapeXmlStr(document.getElementById('Radiogroup1').value), 'Question1');
-                document.controller.setValue('/ctx/vars/@question2', escapeXmlStr(document.getElementById('Radiogroup2').value), 'Question2');
-                document.controller.setValue('/ctx/vars/@question3', escapeXmlStr(document.getElementById('Radiogroup2').value), 'Question3');
-                document.controller.setValue('/ctx/vars/@question4_1', escapeXmlStr(document.getElementById('Radiogroup4_1').value), 'Question4_1');
-                document.controller.setValue('/ctx/vars/@question4_2', escapeXmlStr(document.getElementById('Radiogroup4_2').value), 'Question4_2');
-                document.controller.setValue('/ctx/vars/@question4_3', escapeXmlStr(document.getElementById('Radiogroup4_3').value), 'Question4_3');
-                document.controller.setValue('/ctx/vars/@question4_4', escapeXmlStr(document.getElementById('Radiogroup4_4').value), 'Question4_4');
-                document.controller.setValue('/ctx/vars/@question4_5', escapeXmlStr(document.getElementById('Radiogroup4_5').value), 'Question4_5');
-                document.controller.setValue('/ctx/vars/@question4_6', escapeXmlStr(document.getElementById('Radiogroup4_6').value), 'Question4_6');
-                document.controller.setValue('/ctx/vars/@question5', escapeXmlStr(document.getElementById('Radiogroup5').value), 'Question5');
-                document.controller.setValue('/ctx/vars/@question6', escapeXmlStr(document.getElementById('Radiogroup6').value), 'Question6');
-                document.controller.setValue('/ctx/vars/@question7', question7);
-                document.controller.setValue('/ctx/vars/@question8', question8);
-                document.controller.setValue('/ctx/vars/@question9', question9);
-                document.controller.setValue('/ctx/vars/@question10', question10);
-                document.controller.setValue('/ctx/vars/@question11', question11);
-                document.controller.setValue('/ctx/vars/@question12', question12);
-                document.controller.setValue('/ctx/vars/@question13', question13);
-                document.controller.setValue('/ctx/vars/@question14', question14);
-                document.controller.setValue('/ctx/vars/@question15', question15);
-                document.controller.setValue('/ctx/vars/@question16', question16);
-                document.controller.setValue('/ctx/vars/@question17', question17);
-                document.controller.setValue('/ctx/vars/@question18', question18, 'question18');
-                document.controller.setValue('/ctx/vars/@emailAddress', document.getElementById('emailAdd').value), 'emailAddress';
+                document.controller.setValue('/ctx/vars/@question5', escapeXmlStr(question5), 'question5');
+                document.controller.setValue('/ctx/vars/@question9', escapeXmlStr(question9), 'question9');
+                document.controller.setValue('/ctx/vars/@question13', escapeXmlStr(question13), 'question13');
+                document.controller.setValue('/ctx/vars/@question16', escapeXmlStr(question16), 'question16');
+                document.controller.setValue('/ctx/vars/@question17', escapeXmlStr(question17), 'question17');
+                document.controller.setValue('/ctx/vars/@question18', escapeXmlStr(question18), 'question18');
+                document.controller.setValue('/ctx/vars/@emailAddress', escapeXmlStr(emailAddress), 'emailAddress');
 
                 return document.controller.submit('next', '')
             }
         }
-
 
     </script>
 
@@ -140,10 +183,11 @@
             font-size: 0.9em;
         }
 
-        ol {
+        ul {
             padding-left: 20px;
             padding-right: 20px;
             margin: 0 auto;
+            list-style-type: none;
         }
 
         li::marker {
@@ -189,15 +233,11 @@
                 0px -4px 10px rgba(255, 255, 255, 0.3);
         }
 
-
-
         .email {
             width: 40%;
         }
 
-
         /*Table*/
-
         .demo {
             width: 100%;
             height: 100%;
@@ -253,7 +293,6 @@
             color: red;
         }
 
-
         #validation_status {
             background: #FFFFC9 url(http://dell-mid-stage1.campaign.adobe.com/res/dell_mid_stage1/b769f55356b0416c86c1158dda58e1f7.png) no-repeat 10px 10px;
             border: 1px solid #d1cec5;
@@ -270,7 +309,6 @@
         .validation-div {
             margin-top: 12px
         }
-
 
         @media (max-width: 768px) {
             .row {
@@ -321,402 +359,291 @@
     </style>
 </head>
 
-<body>
+<body style="" class="">
     <div class="container" data-nl-localizable="true">
         <div class="text-center">
             <div id="header"></div>
         </div>
         <form name="uSATsurvey" class="uSATsurvey" id="uSATsurvey" action="" method="post">
             <div class="row">
-                <h1>Adobe Campaign <br> User Satisfaction Survey</h1>
+                <h1>Adobe Campaign <br /> User Satisfaction Survey</h1>
                 <hr />
-                <ol>
-                    <h3>Adobe Campaign Support</h3>
-                    <p>This section contains questions related to the support provided by the Adobe Campaign IT team.
-                    </p>
-                    <hr />
-
-                    <div>
+                <h3>Adobe Campaign Support</h3>
+                <p>This section contains questions related to the support provided by the Adobe Campaign IT team.</p>
+                <hr />
+                <div id="rad1">
+                    <ul>
                         <li>
-                            <p>How satisfied are you overall with support for Adobe Campaign?<span class="required">*</span></p>
-                            <div><input id="radiogroup1" name="Radiogroup1" type="radio" value="Very Satisfied" />
-                                <label>Very Satisfied</label>
-                            </div>
-                            <div><input id="radiogroup1" name="Radiogroup1" type="radio" value="Somewhat Satisfied" />
-                                <label>Somewhat Satisfied </label>
-                            </div>
-                            <div><input id="radiogroup1" name="Radiogroup1" type="radio" value="Neutral" />
-                                <label>Neutral</label>
-                            </div>
-                            <div><input id="radiogroup1" name="Radiogroup1" type="radio" value="Somewhat Dissatisfied" />
-                                <label>Somewhat Dissatisfied</label>
-                            </div>
-                            <div><input id="radiogroup1" name="Radiogroup1" type="radio" value="Very Dissatisfied" />
-                                <label>Very Dissatisfied</label>
-                            </div>
+                            <p>1. How satisfied are you overall with support for Adobe Campaign?<span class="required">*</span></p>
+                            <div><input name="Radiogroup1" id="radiogroup1" type="radio" value="Very Satisfied" data-nl-ismandatory="true" data-nl-label="How satisfied are you overall with support" data-nl-xpath="surveySubmissionDataACM/@question1" data-nl-bindto="xpath" /> <label>Very Satisfied</label></div>
+                            <div><input name="Radiogroup1" id="radiogroup1" type="radio" value="Somewhat Satisfied" data-nl-ismandatory="true" data-nl-label="How satisfied are you overall with support" data-nl-xpath="surveySubmissionDataACM/@question1" data-nl-bindto="xpath" /> <label>Somewhat Satisfied </label></div>
+                            <div><input name="Radiogroup1" id="radiogroup1" type="radio" value="Neutral" data-nl-ismandatory="true" data-nl-label="How satisfied are you overall with support" data-nl-xpath="surveySubmissionDataACM/@question1" data-nl-bindto="xpath" /> <label>Neutral</label></div>
+                            <div><input name="Radiogroup1" id="radiogroup1" type="radio" value="Somewhat Dissatisfied" data-nl-ismandatory="true" data-nl-label="How satisfied are you overall with support" data-nl-xpath="surveySubmissionDataACM/@question1" data-nl-bindto="xpath" /> <label>Somewhat Dissatisfied</label></div>
+                            <div><input name="Radiogroup1" id="radiogroup1" type="radio" value="Very Dissatisfied" data-nl-ismandatory="true" data-nl-label="How satisfied are you overall with support" data-nl-xpath="surveySubmissionDataACM/@question1" data-nl-bindto="xpath" /> <label>Very Dissatisfied</label></div>
                         </li>
-                    </div>
-
-                    <div>
+                    </ul>
+                </div>
+                <div id="rad2">
+                    <ul>
                         <li>
-                            <p>Over the past quarter, how satisfied are you with the support staff&rsquo;s ability to
-                                resolve Incidents for Adobe Campaign in a timely fashion?<span class="required">*</span>
-                            </p>
-                            <div><input id="radiogroup2" name="Radiogroup2" type="radio" value="Very Satisfied" />
-                                <label>Very Satisfied</label>
-                            </div>
-                            <div><input id="radiogroup2" name="Radiogroup2" type="radio" value="Somewhat Satisfied" />
-                                <label>Somewhat Satisfied </label>
-                            </div>
-                            <div><input id="radiogroup2" name="Radiogroup2" type="radio" value="Neutral" />
-                                <label>Neutral</label>
-                            </div>
-                            <div><input id="radiogroup2" name="Radiogroup2" type="radio" value="Somewhat Dissatisfied" />
-                                <label> Somewhat Dissatisfied </label>
-                            </div>
-                            <div><input id="radiogroup2" name="Radiogroup2" type="radio" value="Very Dissatisfied" />
-                                <label> Very
-                                    Dissatisfied </label>
-                            </div>
+                            <p>2. Over the past quarter, how satisfied are you with the support staff&rsquo;s ability to resolve Incidents for Adobe Campaign in a timely fashion?<span class="required">*</span></p>
+                            <div><input name="Radiogroup2" id="radiogroup2" type="radio" value="Very Satisfied" data-nl-ismandatory="true" data-nl-label="2. Support staff&rsquo;s ability to resolve Incidents in a time" data-nl-xpath="surveySubmissionDataACM/@question2" data-nl-bindto="xpath" /> <label>Very Satisfied</label></div>
+                            <div><input name="Radiogroup2" id="radiogroup2" type="radio" value="Somewhat Satisfied" data-nl-ismandatory="true" data-nl-label="2. Support staff&rsquo;s ability to resolve Incidents in a time" data-nl-xpath="surveySubmissionDataACM/@question2" data-nl-bindto="xpath" /> <label>Somewhat Satisfied </label></div>
+                            <div><input name="Radiogroup2" id="radiogroup2" type="radio" value="Neutral" data-nl-ismandatory="true" data-nl-label="2. Support staff&rsquo;s ability to resolve Incidents in a time" data-nl-xpath="surveySubmissionDataACM/@question2" data-nl-bindto="xpath" /> <label>Neutral</label></div>
+                            <div><input name="Radiogroup2" id="radiogroup2" type="radio" value="Somewhat Dissatisfied" data-nl-ismandatory="true" data-nl-label="2. Support staff&rsquo;s ability to resolve Incidents in a time" data-nl-xpath="surveySubmissionDataACM/@question2" data-nl-bindto="xpath" /> <label> Somewhat Dissatisfied </label></div>
+                            <div><input name="Radiogroup2" id="radiogroup2" type="radio" value="Very Dissatisfied" data-nl-ismandatory="true" data-nl-label="2. Support staff&rsquo;s ability to resolve Incidents in a time" data-nl-xpath="surveySubmissionDataACM/@question2" data-nl-bindto="xpath" /> <label> Very Dissatisfied </label></div>
                         </li>
-                    </div>
-
-                    <div>
+                    </ul>
+                </div>
+                <div id="rad3">
+                    <ul>
                         <li>
-                            <p>If your incident with Adobe Campaign was not resolved, did support staff provide next
-                                steps
-                                or direct you to a resource who could help?<span class="required">*</span></p>
-                            <div><input id="radiogroup3" name="Radiogroup3" type="radio" value="Yes" /> <label> Yes
-                                </label></div>
-                            <div><input id="radiogroup3" name="Radiogroup3" type="radio" value="No" /> <label> No
-                                </label></div>
-                            <div><input id="radiogroup3" name="Radiogroup3" type="radio" value="N/A" /> <label> N/A, I
-                                    have not submitted
-                                    any
-                                    incidents recently</label></div>
+                            <p>3. If your incident with Adobe Campaign was not resolved, did support staff provide next steps or direct you to a resource who could help?<span class="required">*</span></p>
+                            <div><input name="Radiogroup3" id="radiogroup3" type="radio" value="Yes" data-nl-ismandatory="true" data-nl-label="3. Provided next steps or direct you to a resource" data-nl-xpath="surveySubmissionDataACM/@question3" data-nl-bindto="xpath" /> <label> Yes </label></div>
+                            <div><input name="Radiogroup3" id="radiogroup3" type="radio" value="No" data-nl-ismandatory="true" data-nl-label="3. Provided next steps or direct you to a resource" data-nl-xpath="surveySubmissionDataACM/@question3" data-nl-bindto="xpath" /> <label> No </label></div>
+                            <div><input name="Radiogroup3" id="radiogroup3" type="radio" value="N/A" data-nl-ismandatory="true" data-nl-label="3. Provided next steps or direct you to a resource" data-nl-xpath="surveySubmissionDataACM/@question3" data-nl-bindto="xpath" /> <span>N/A</span><label>(I have not submitted any incidents recently)</label></div>
                         </li>
-                    </div>
-
-                    <div>
+                    </ul>
+                </div>
+                <div id="rad4">
+                    <ul>
                         <li>
-                            <p>Please rate the Adobe Campaign support staff on the following attributes.<span class="required">*</span></p>
-                            <table class="demo question4box"" >
-                            <tr>
-                                <td class=" td_sel">&nbsp;</td>
-                                <td class="td_sel">Poor</br>☆</td>
-                                <td class="td_sel">Fair</br>☆☆</td>
-                                <td class="td_sel">Good</br>☆☆☆</td>
-                                <td class="td_sel">Very Good</br>☆☆☆☆</td>
-                                <td class="td_sel">Excellent</br>☆☆☆☆☆</td>
-                                </tr>
-                                <tr>
-                                    <td>Responsiveness</td>
-                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio" value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio" value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio" value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio" value="Very Good" />
-                                    </td>
-                                    <td class="td_sel"><input id="radiogroup4_1" name="Radiogroup4_1" type="radio" value="Excellent" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Communication</td>
-                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio" value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio" value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio" value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio" value="Very Good" />
-                                    </td>
-                                    <td class="td_sel"><input id="radiogroup4_2" name="Radiogroup4_2" type="radio" value="Excellent" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Professionalism</td>
-                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio" value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio" value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio" value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio" value="Very Good" />
-                                    </td>
-                                    <td class="td_sel"><input id="radiogroup4_3" name="Radiogroup4_3" type="radio" value="Excellent" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Politeness</td>
-                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio" value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio" value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio" value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio" value="Very Good" />
-                                    </td>
-                                    <td class="td_sel"><input id="radiogroup4_4" name="Radiogroup4_4" type="radio" value="Excellent" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Knowledge of the problem</td>
-                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio" value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio" value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio" value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio" value="Very Good" />
-                                    </td>
-                                    <td class="td_sel"><input id="radiogroup4_5" name="Radiogroup4_5" type="radio" value="Excellent" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Efficiency in solving the problem</td>
-                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio" value="Poor" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio" value="Fair" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio" value="Good" /></td>
-                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio" value="Very Good" />
-                                    </td>
-                                    <td class="td_sel"><input id="radiogroup4_6" name="Radiogroup4_6" type="radio" value="Excellent" />
-                                    </td>
-                                </tr>
+                            <p>4. Please rate the Adobe Campaign support staff on the following attributes.<span class="required">*</span></p>
+                            <table class="demo question4box">
                                 <tbody>
+                                    <tr>
+                                        <td class=" td_sel"> </td>
+                                        <td class="td_sel">Poor</td>
+                                        <td class="td_sel">Fair</td>
+                                        <td class="td_sel">Good</td>
+                                        <td class="td_sel">Very Good</td>
+                                        <td class="td_sel">Excellent</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td_sel"> </td>
+                                        <td class="td_sel">☆</td>
+                                        <td class="td_sel">☆☆</td>
+                                        <td class="td_sel">☆☆☆</td>
+                                        <td class="td_sel">☆☆☆☆</td>
+                                        <td class="td_sel">☆☆☆☆☆</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Responsiveness</td>
+                                        <td class="td_sel"><input name="Radiogroup4_1" id="radiogroup4_1" type="radio" value="Poor" data-nl-ismandatory="true" data-nl-label="4. Responsiveness" data-nl-xpath="surveySubmissionDataACM/@question4_1" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_1" id="radiogroup4_1" type="radio" value="Fair" data-nl-ismandatory="true" data-nl-label="4. Responsiveness" data-nl-xpath="surveySubmissionDataACM/@question4_1" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_1" id="radiogroup4_1" type="radio" value="Good" data-nl-ismandatory="true" data-nl-label="4. Responsiveness" data-nl-xpath="surveySubmissionDataACM/@question4_1" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_1" id="radiogroup4_1" type="radio" value="Very Good" data-nl-ismandatory="true" data-nl-label="4. Responsiveness" data-nl-xpath="surveySubmissionDataACM/@question4_1" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_1" id="radiogroup4_1" type="radio" value="Excellent" data-nl-ismandatory="true" data-nl-label="4. Responsiveness" data-nl-xpath="surveySubmissionDataACM/@question4_1" data-nl-bindto="xpath" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Communication</td>
+                                        <td class="td_sel"><input name="Radiogroup4_2" id="radiogroup4_2" type="radio" value="Poor" data-nl-ismandatory="true" data-nl-label="4. Communication" data-nl-xpath="surveySubmissionDataACM/@question4_2" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_2" id="radiogroup4_2" type="radio" value="Fair" data-nl-ismandatory="true" data-nl-label="4. Communication" data-nl-xpath="surveySubmissionDataACM/@question4_2" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_2" id="radiogroup4_2" type="radio" value="Good" data-nl-ismandatory="true" data-nl-label="4. Communication" data-nl-xpath="surveySubmissionDataACM/@question4_2" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_2" id="radiogroup4_2" type="radio" value="Very Good" data-nl-ismandatory="true" data-nl-label="4. Communication" data-nl-xpath="surveySubmissionDataACM/@question4_2" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_2" id="radiogroup4_2" type="radio" value="Excellent" data-nl-ismandatory="true" data-nl-label="4. Communication" data-nl-xpath="surveySubmissionDataACM/@question4_2" data-nl-bindto="xpath" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Professionalism</td>
+                                        <td class="td_sel"><input name="Radiogroup4_3" id="radiogroup4_3" type="radio" value="Poor" data-nl-ismandatory="true" data-nl-label="4. Professionalism" data-nl-xpath="surveySubmissionDataACM/@question4_3" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_3" id="radiogroup4_3" type="radio" value="Fair" data-nl-ismandatory="true" data-nl-label="4. Professionalism" data-nl-xpath="surveySubmissionDataACM/@question4_3" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_3" id="radiogroup4_3" type="radio" value="Good" data-nl-ismandatory="true" data-nl-label="4. Professionalism" data-nl-xpath="surveySubmissionDataACM/@question4_3" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_3" id="radiogroup4_3" type="radio" value="Very Good" data-nl-ismandatory="true" data-nl-label="4. Professionalism" data-nl-xpath="surveySubmissionDataACM/@question4_3" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_3" id="radiogroup4_3" type="radio" value="Excellent" data-nl-ismandatory="true" data-nl-label="4. Professionalism" data-nl-xpath="surveySubmissionDataACM/@question4_3" data-nl-bindto="xpath" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Politeness</td>
+                                        <td class="td_sel"><input name="Radiogroup4_4" id="radiogroup4_4" type="radio" value="Poor" data-nl-ismandatory="true" data-nl-label="4. Politeness" data-nl-xpath="surveySubmissionDataACM/@question4_4" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_4" id="radiogroup4_4" type="radio" value="Fair" data-nl-ismandatory="true" data-nl-label="4. Politeness" data-nl-xpath="surveySubmissionDataACM/@question4_4" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_4" id="radiogroup4_4" type="radio" value="Good" data-nl-ismandatory="true" data-nl-label="4. Politeness" data-nl-xpath="surveySubmissionDataACM/@question4_4" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_4" id="radiogroup4_4" type="radio" value="Very Good" data-nl-ismandatory="true" data-nl-label="4. Politeness" data-nl-xpath="surveySubmissionDataACM/@question4_4" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_4" id="radiogroup4_4" type="radio" value="Excellent" data-nl-ismandatory="true" data-nl-label="4. Politeness" data-nl-xpath="surveySubmissionDataACM/@question4_4" data-nl-bindto="xpath" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Knowledge of the problem</td>
+                                        <td class="td_sel"><input name="Radiogroup4_5" id="radiogroup4_5" type="radio" value="Poor" data-nl-ismandatory="true" data-nl-label="4. Knowledge of the problem" data-nl-xpath="surveySubmissionDataACM/@question4_5" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_5" id="radiogroup4_5" type="radio" value="Fair" data-nl-ismandatory="true" data-nl-label="4. Knowledge of the problem" data-nl-xpath="surveySubmissionDataACM/@question4_5" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_5" id="radiogroup4_5" type="radio" value="Good" data-nl-ismandatory="true" data-nl-label="4. Knowledge of the problem" data-nl-xpath="surveySubmissionDataACM/@question4_5" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_5" id="radiogroup4_5" type="radio" value="Very Good" data-nl-ismandatory="true" data-nl-label="4. Knowledge of the problem" data-nl-xpath="surveySubmissionDataACM/@question4_5" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_5" id="radiogroup4_5" type="radio" value="Excellent" data-nl-ismandatory="true" data-nl-label="4. Knowledge of the problem" data-nl-xpath="surveySubmissionDataACM/@question4_5" data-nl-bindto="xpath" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Efficiency in solving the problem</td>
+                                        <td class="td_sel"><input name="Radiogroup4_6" id="radiogroup4_6" type="radio" value="Poor" data-nl-ismandatory="true" data-nl-label="4. Efficiency in solving the problem" data-nl-xpath="surveySubmissionDataACM/@question4_6" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_6" id="radiogroup4_6" type="radio" value="Fair" data-nl-ismandatory="true" data-nl-label="4. Efficiency in solving the problem" data-nl-xpath="surveySubmissionDataACM/@question4_6" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_6" id="radiogroup4_6" type="radio" value="Good" data-nl-ismandatory="true" data-nl-label="4. Efficiency in solving the problem" data-nl-xpath="surveySubmissionDataACM/@question4_6" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_6" id="radiogroup4_6" type="radio" value="Very Good" data-nl-ismandatory="true" data-nl-label="4. Efficiency in solving the problem" data-nl-xpath="surveySubmissionDataACM/@question4_6" data-nl-bindto="xpath" /></td>
+                                        <td class="td_sel"><input name="Radiogroup4_6" id="radiogroup4_6" type="radio" value="Excellent" data-nl-ismandatory="true" data-nl-label="4. Efficiency in solving the problem" data-nl-xpath="surveySubmissionDataACM/@question4_6" data-nl-bindto="xpath" /></td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </li>
-                    </div>
-                    <div>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
                         <li>
-                            <p>Please provide any additional feedback you have regarding Adobe Campaign support.</p>
-                            <div><textarea name="Question5_text" class="form-control" id="question5_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea></div>
+                            <p>5. Please provide any additional feedback you have regarding Adobe Campaign support.</p>
+                            <div><textarea name="Question5_text" class="form-control" id="question5_Text" maxlength="250" placeholder="Please leave your feedback." rows="3" data-nl-label="5. Feedback about Adobe Campaign support" data-nl-xpath="surveySubmissionDataACM/@question5" data-nl-bindto="xpath"></textarea></div>
                         </li>
-                    </div>
-                    <hr />
-                    <h3>Ease of use</h3>
-                    <p>This section contains questions related to the usability of Adobe Campaign.</p>
-                    <hr />
-                    <div>
+                    </ul>
+                </div>
+                <hr />
+                <h3>Ease of use</h3>
+                <p>This section contains questions related to the usability of Adobe Campaign.</p>
+                <hr />
+                <div id="rad6">
+                    <ul>
                         <li>
-                            <p>How satisfied are you with the ease of use of Adobe Campaign?<span class="required">*</span>
-                            </p>
-                            <div>
-                                <input id="radiogroup6" name="Radiogroup6" type="radio" value="Very Satisfied" />
-                                <label>Very Satisfied</label>
-                            </div>
-                            <div>
-                                <input id="radiogroup6" name="Radiogroup6" type="radio" value="Somewhat Satisfied" />
-                                <label>Somewhat Satisfied </label>
-                            </div>
-                            <div>
-                                <input id="radiogroup6" name="Radiogroup6" type="radio" value="Neutral" />
-                                <label>Neutral </label>
-                            </div>
-                            <div>
-                                <input id="radiogroup6" name=" Radiogroup6" type="radio" value="Somewhat Dissatisfied" />
-                                <label>Somewhat Dissatisfied </label>
-                            </div>
-                            <div>
-                                <input id="radiogroup6" name="Radiogroup6" type="radio" value="Very Dissatisfied" />
-                                <label>Very Dissatisfied </label>
-                            </div>
+                            <p>6. How satisfied are you with the ease of use of Adobe Campaign?<span class="required">*</span></p>
+                            <div><input name="Radiogroup6" id="radiogroup6" type="radio" value="Very Satisfied" data-nl-label="6. How satisfied are you with the ease of use" data-nl-xpath="surveySubmissionDataACM/@question6" data-nl-bindto="xpath" /> <label>Very Satisfied</label></div>
+                            <div><input name="Radiogroup6" id="radiogroup6" type="radio" value="Somewhat Satisfied" data-nl-label="6. How satisfied are you with the ease of use" data-nl-xpath="surveySubmissionDataACM/@question6" data-nl-bindto="xpath" /> <label>Somewhat Satisfied </label></div>
+                            <div><input name="Radiogroup6" id="radiogroup6" type="radio" value="Neutral" data-nl-label="6. How satisfied are you with the ease of use" data-nl-xpath="surveySubmissionDataACM/@question6" data-nl-bindto="xpath" /> <label>Neutral </label></div>
+                            <div><input name="Radiogroup6" id="radiogroup6" type="radio" value="Somewhat Dissatisfied" data-nl-label="6. How satisfied are you with the ease of use" data-nl-xpath="surveySubmissionDataACM/@question6" data-nl-bindto="xpath" /> <label>Somewhat Dissatisfied </label></div>
+                            <div><input name="Radiogroup6" id="radiogroup6" type="radio" value="Very Dissatisfied" data-nl-label="6. How satisfied are you with the ease of use" data-nl-xpath="surveySubmissionDataACM/@question6" data-nl-bindto="xpath" /> <label>Very Dissatisfied </label></div>
                         </li>
-                    </div>
-                    <div>
+                    </ul>
+                </div>
+                <div id="rad7">
+                    <ul>
                         <li>
-                            <p>How quickly are you able to find the features or objects in Adobe Campaign related to
-                                your
-                                job
-                                function?<span class="required">*</span></p>
-                            <div><input id="radiogroup7" name="Radiogroup7" type="radio" value="Very quickly" /> <label>
-                                    Very quickly </label></div>
-                            <div><input id="radiogroup7" name="Radiogroup7" type="radio" value="Somewhat quickly" />
-                                <label>
-                                    Somewhat quickly </label>
-                            </div>
-                            <div><input id="radiogroup7" name="Radiogroup7" type="radio" value="Neutral" /> <label>
-                                    Neutral </label></div>
-                            <div><input id="radiogroup7" name="Radiogroup7" type="radio" value="Hard to find" /> <label>
-                                    Hard to find </label></div>
-                            <div><input id="radiogroup7" name="Radiogroup7" type="radio" value="Very hard to find" />
-                                <label>
-                                    Very hard to find </label>
-                            </div>
+                            <p>7. How quickly are you able to find the features or objects in Adobe Campaign related to your job function?<span class="required">*</span></p>
+                            <div><input name="Radiogroup7" id="radiogroup7" type="radio" value="Very quickly" data-nl-label="7. How quickly are you able to find the features or objects" data-nl-xpath="surveySubmissionDataACM/@question7" data-nl-bindto="xpath" /> <label> Very quickly </label></div>
+                            <div><input name="Radiogroup7" id="radiogroup7" type="radio" value="Somewhat quickly" data-nl-label="7. How quickly are you able to find the features or objects" data-nl-xpath="surveySubmissionDataACM/@question7" data-nl-bindto="xpath" /> <label> Somewhat quickly </label></div>
+                            <div><input name="Radiogroup7" id="radiogroup7" type="radio" value="Neutral" data-nl-label="7. How quickly are you able to find the features or objects" data-nl-xpath="surveySubmissionDataACM/@question7" data-nl-bindto="xpath" /> <label> Neutral </label></div>
+                            <div><input name="Radiogroup7" id="radiogroup7" type="radio" value="Hard to find" data-nl-label="7. How quickly are you able to find the features or objects" data-nl-xpath="surveySubmissionDataACM/@question7" data-nl-bindto="xpath" /> <label> Hard to find </label></div>
+                            <div><input name="Radiogroup7" id="radiogroup7" type="radio" value="Very hard to find" data-nl-label="7. How quickly are you able to find the features or objects" data-nl-xpath="surveySubmissionDataACM/@question7" data-nl-bindto="xpath" /> <label> Very hard to find </label></div>
                         </li>
-                    </div>
-                    <div>
+                    </ul>
+                </div>
+                <div id="rad8">
+                    <ul>
                         <li>
-                            <p>How often do you have issues with the application when using Adobe Campaign?<span class="required">*</span></p>
-                            <div><input id="radiogroup8" name="Radiogroup8" type="radio" value="Always" /> <label>
-                                    Always </label>
-                            </div>
-                            <div><input id="radiogroup8" name="Radiogroup8" type="radio" value="Sometimes" /> <label>
-                                    Sometimes </label>
-                            </div>
-                            <div><input id="radiogroup8" name="Radiogroup8" type="radio" value="Rarely" /> <label>
-                                    Rarely </label></div>
-                            <div><input id="radiogroup8" name="Radiogroup8" type="radio" value="Never" /> <label>
-                                    Never
-                                </label>
-                            </div>
+                            <p>8. How often do you have issues with the application when using Adobe Campaign?<span class="required">*</span></p>
+                            <div><input name="Radiogroup8" id="radiogroup8" type="radio" value="Always" data-nl-ismandatory="true" data-nl-label="8. Issues with the application" data-nl-xpath="surveySubmissionDataACM/@question8" data-nl-bindto="xpath" /> <label> Always </label></div>
+                            <div><input name="Radiogroup8" id="radiogroup8" type="radio" value="Sometimes" data-nl-ismandatory="true" data-nl-label="8. Issues with the application" data-nl-xpath="surveySubmissionDataACM/@question8" data-nl-bindto="xpath" /> <label> Sometimes </label></div>
+                            <div><input name="Radiogroup8" id="radiogroup8" type="radio" value="Rarely" data-nl-ismandatory="true" data-nl-label="8. Issues with the application" data-nl-xpath="surveySubmissionDataACM/@question8" data-nl-bindto="xpath" /> <label> Rarely </label></div>
+                            <div><input name="Radiogroup8" id="radiogroup8" type="radio" value="Never" data-nl-ismandatory="true" data-nl-label="8. Issues with the application" data-nl-xpath="surveySubmissionDataACM/@question8" data-nl-bindto="xpath" /> <label> Never </label></div>
                         </li>
-                    </div>
-                    <div>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
                         <li>
-                            <p>Please provide any additional feedback you have regarding Adobe Campaign ease of use.
-                            </p>
-                            <div><textarea name="Question9_text" class="form-control" id="question9_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea>
-                            </div>
+                            <p>9. Please provide any additional feedback you have regarding Adobe Campaign ease of use.</p>
+                            <div><textarea name="Question9_text" class="form-control" id="question9_Text" maxlength="250" placeholder="Please leave your feedback." rows="3" data-nl-label="9. Feedback about ease of use" data-nl-xpath="surveySubmissionDataACM/@question9" data-nl-bindto="xpath"></textarea></div>
                         </li>
-                    </div>
-                    <hr />
-                    <h3>Features</h3>
-                    <p>This section contains questions related to the new features and capabilities being developed.
-                    </p>
-                    <hr />
-                    <div>
+                    </ul>
+                </div>
+                <hr />
+                <h3>Features</h3>
+                <p>This section contains questions related to the new features and capabilities being developed.</p>
+                <hr />
+                <div id="rad10">
+                    <ul>
                         <li>
-                            <p>How satisfied are you with the current features and capabilities of Adobe Campaign?<span class="required">*</span></p>
-                            <div><input id="radiogroup10" name="Radiogroup10" type="radio" value="Very satisfied " />
-                                <label> Very Satisfied </label>
-                            </div>
-                            <div><input id="radiogroup10" name="Radiogroup10" type="radio" value="Somewhat Satisfied" />
-                                <label> Somewhat Satisfied </label>
-                            </div>
-                            <div><input id="radiogroup10" name="Radiogroup10" type="radio" value="Neutral" /> <label>
-                                    Neutral
-                                </label></div>
-                            <div><input id="radiogroup10" name="Radiogroup10" type="radio" value="Somewhat Dissatisfied" />
-                                <label> Somewhat Dissatisfied </label>
-                            </div>
-                            <div><input id="radiogroup10" name="Radiogroup10" type="radio" value="Very Dissatisfied" />
-                                <label> Very Dissatisfied </label>
-                            </div>
+                            <p>10. How satisfied are you with the current features and capabilities of Adobe Campaign?<span class="required">*</span></p>
+                            <div><input name="Radiogroup10" id="radiogroup10" type="radio" value="Very satisfied " data-nl-ismandatory="true" data-nl-label="10. Current features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question10" data-nl-bindto="xpath" /> <label> Very Satisfied </label></div>
+                            <div><input name="Radiogroup10" id="radiogroup10" type="radio" value="Somewhat Satisfied" data-nl-ismandatory="true" data-nl-label="10. Current features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question10" data-nl-bindto="xpath" /> <label> Somewhat Satisfied </label></div>
+                            <div><input name="Radiogroup10" id="radiogroup10" type="radio" value="Neutral" data-nl-ismandatory="true" data-nl-label="10. Current features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question10" data-nl-bindto="xpath" /> <label> Neutral </label></div>
+                            <div><input name="Radiogroup10" id="radiogroup10" type="radio" value="Somewhat Dissatisfied" data-nl-ismandatory="true" data-nl-label="10. Current features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question10" data-nl-bindto="xpath" /> <label> Somewhat Dissatisfied </label></div>
+                            <div><input name="Radiogroup10" id="radiogroup10" type="radio" value="Very Dissatisfied" data-nl-ismandatory="true" data-nl-label="10. Current features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question10" data-nl-bindto="xpath" /> <label> Very Dissatisfied </label></div>
                         </li>
-                    </div>
-                    <div>
+                    </ul>
+                </div>
+                <div id="rad11">
+                    <ul>
                         <li>
-                            <p>How satisfied are you with the testing and deployment of new features and capabilities
-                                for
-                                Adobe
-                                Campaign?<span class="required">*</span></p>
-                            <div><input id="radiogroup11" name="Radiogroup11" type="radio" value="Very satisfied" />
-                                <label> Very Satisfied </label>
-                            </div>
-                            <div><input id="radiogroup11" name="Radiogroup11" type="radio" value="Somewhat Satisfied" />
-                                <label> Somewhat Satisfied </label>
-                            </div>
-                            <div><input id="radiogroup11" name="Radiogroup11" type="radio" value="Neutral" />
-                                <label> Neutral </label>
-                            </div>
-                            <div><input id="radiogroup11" name="Radiogroup11" type="radio" value="Somewhat Dissatisfied" />
-                                <label> Somewhat Dissatisfied
-                                </label>
-                            </div>
-                            <div><input id="radiogroup11" name="Radiogroup11" type="radio" value="Very Dissatisfied" />
-                                <label> Very Dissatisfied </label>
-                            </div>
+                            <p>11. How satisfied are you with the testing and deployment of new features and capabilities for Adobe Campaign?<span class="required">*</span></p>
+                            <div><input name="Radiogroup11" id="radiogroup11" type="radio" value="Very satisfied" data-nl-ismandatory="true" data-nl-label="11. Testing and deployment of new features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question11" data-nl-bindto="xpath" /> <label> Very Satisfied </label></div>
+                            <div><input name="Radiogroup11" id="radiogroup11" type="radio" value="Somewhat Satisfied" data-nl-ismandatory="true" data-nl-label="11. Testing and deployment of new features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question11" data-nl-bindto="xpath" /> <label> Somewhat Satisfied </label></div>
+                            <div><input name="Radiogroup11" id="radiogroup11" type="radio" value="Neutral" data-nl-ismandatory="true" data-nl-label="11. Testing and deployment of new features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question11" data-nl-bindto="xpath" /> <label> Neutral </label></div>
+                            <div><input name="Radiogroup11" id="radiogroup11" type="radio" value="Somewhat Dissatisfied" data-nl-ismandatory="true" data-nl-label="11. Testing and deployment of new features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question11" data-nl-bindto="xpath" /> <label> Somewhat Dissatisfied </label></div>
+                            <div><input name="Radiogroup11" id="radiogroup11" type="radio" value="Very Dissatisfied" data-nl-ismandatory="true" data-nl-label="11. Testing and deployment of new features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question11" data-nl-bindto="xpath" /> <label> Very Dissatisfied </label></div>
                         </li>
-                    </div>
-
-                    <div>
+                    </ul>
+                </div>
+                <div id="rad12">
+                    <ul>
                         <li>
-                            <p>How satisfied are you regarding the time it takes to develop new features and
-                                capabilities for Adobe Campaign once an intake has been approved?<span class="required">*</span></p>
-                            <div><input id="radiogroup12" name="Radiogroup12" type="radio" value="Very satisfied" />
-                                <label> Very Satisfied </label>
-                            </div>
-                            <div><input id="radiogroup12" name="Radiogroup12" type="radio" value="Somewhat Satisfied" />
-                                <label> Somewhat Satisfied </label>
-                            </div>
-                            <div><input id="radiogroup12" name="Radiogroup12" type="radio" value="Neutral" />
-                                <label> Neutral </label>
-                            </div>
-                            <div><input id="radiogroup12" name="Radiogroup12" type="radio" value="Somewhat Dissatisfied" />
-                                <label> Somewhat Dissatisfied </label>
-                            </div>
-                            <div><input id="radiogroup12" name="Radiogroup12" type="radio" value="Very Dissatisfied" />
-                                <label> Very Dissatisfied </label>
-                            </div>
+                            <p>12. How satisfied are you regarding the time it takes to develop new features and capabilities for Adobe Campaign once an intake has been approved?<span class="required">*</span></p>
+                            <div><input name="Radiogroup12" id="radiogroup12" type="radio" value="Very satisfied" data-nl-ismandatory="true" data-nl-label="12. Regarding the time it takes to develop new features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question12" data-nl-bindto="xpath" /> <label> Very Satisfied </label></div>
+                            <div><input name="Radiogroup12" id="radiogroup12" type="radio" value="Somewhat Satisfied" data-nl-ismandatory="true" data-nl-label="12. Regarding the time it takes to develop new features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question12" data-nl-bindto="xpath" /> <label> Somewhat Satisfied </label></div>
+                            <div><input name="Radiogroup12" id="radiogroup12" type="radio" value="Neutral" data-nl-ismandatory="true" data-nl-label="12. Regarding the time it takes to develop new features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question12" data-nl-bindto="xpath" /> <label> Neutral </label></div>
+                            <div><input name="Radiogroup12" id="radiogroup12" type="radio" value="Somewhat Dissatisfied" data-nl-ismandatory="true" data-nl-label="12. Regarding the time it takes to develop new features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question12" data-nl-bindto="xpath" /> <label> Somewhat Dissatisfied </label></div>
+                            <div><input name="Radiogroup12" id="radiogroup12" type="radio" value="Very Dissatisfied" data-nl-ismandatory="true" data-nl-label="12. Regarding the time it takes to develop new features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question12" data-nl-bindto="xpath" /> <label> Very Dissatisfied </label></div>
                         </li>
-                    </div>
-                    <div>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
                         <li>
-                            <p>Please provide any additional comments about features and capabilities of Adobe
-                                Campaign.
-                                Are
-                                there features or capabilities missing in Adobe Campaign that would make your job
-                                easier?<span class="required">*</span>
-                            </p>
-                            <div><textarea name="Question13_text" class="form-control" id="question13_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea></div>
+                            <p>13. Please provide any additional comments about features and capabilities of Adobe Campaign. Are there features or capabilities missing in Adobe Campaign that would make your job easier?<span class="required">*</span></p>
+                            <div><textarea name="Question13_text" class="form-control" id="question13_Text" maxlength="250" placeholder="Please leave your feedback." rows="3" data-nl-label="13. Feedback about features and capabilities" data-nl-xpath="surveySubmissionDataACM/@question13" data-nl-bindto="xpath"></textarea></div>
                         </li>
-                    </div>
-                    <h3>Overall</h3>
-                    <p>This section contains questions related to your overall satisfaction with the tool.</p>
-                    <hr />
-                    <div>
+                    </ul>
+                </div>
+                <h3>Overall</h3>
+                <p>This section contains questions related to your overall satisfaction with the tool.</p>
+                <hr />
+                <div id="rad14">
+                    <ul>
                         <li>
-                            <p>How satisfied are you with the Adobe Campaign application?<span class="required">*</span>
-                            </p>
-                            <div><input id="radiogroup14" name="Radiogroup14" type="radio" value="Very satisfied " />
-                                <label> Very Satisfied </label>
-                            </div>
-                            <div><input id="radiogroup14" name="Radiogroup14" type="radio" value="Somewhat Satisfied" />
-                                <label> Somewhat Satisfied </label>
-                            </div>
-                            <div><input id="radiogroup14" name="Radiogroup14" type="radio" value="Neutral" /> <label>
-                                    Neutral
-                                </label></div>
-                            <div><input id="radiogroup14" name="Radiogroup14" type="radio" value="Somewhat Dissatisfied" />
-                                <label> Somewhat Dissatisfied </label>
-                            </div>
-                            <div><input id="radiogroup14" name="Radiogroup14" type="radio" value="Very Dissatisfied" />
-                                <label> Very Dissatisfied </label>
-                            </div>
+                            <p>14. How satisfied are you with the Adobe Campaign application?<span class="required">*</span></p>
+                            <div><input name="Radiogroup14" id="radiogroup14" type="radio" value="Very satisfied" data-nl-ismandatory="true" data-nl-label="14. How satisfied are you with the Adobe Campaign application" data-nl-xpath="surveySubmissionDataACM/@question14" data-nl-bindto="xpath" /> <label> Very Satisfied </label></div>
+                            <div><input name="Radiogroup14" id="radiogroup14" type="radio" value="Somewhat Satisfied" data-nl-ismandatory="true" data-nl-label="14. How satisfied are you with the Adobe Campaign application" data-nl-xpath="surveySubmissionDataACM/@question14" data-nl-bindto="xpath" /> <label> Somewhat Satisfied </label></div>
+                            <div><input name="Radiogroup14" id="radiogroup14" type="radio" value="Neutral" data-nl-ismandatory="true" data-nl-label="14. How satisfied are you with the Adobe Campaign application" data-nl-xpath="surveySubmissionDataACM/@question14" data-nl-bindto="xpath" /> <label> Neutral </label></div>
+                            <div><input name="Radiogroup14" id="radiogroup14" type="radio" value="Somewhat Dissatisfied" data-nl-ismandatory="true" data-nl-label="14. How satisfied are you with the Adobe Campaign application" data-nl-xpath="surveySubmissionDataACM/@question14" data-nl-bindto="xpath" /> <label> Somewhat Dissatisfied </label></div>
+                            <div><input name="Radiogroup14" id="radiogroup14" type="radio" value="Very Dissatisfied" data-nl-ismandatory="true" data-nl-label="14. How satisfied are you with the Adobe Campaign application" data-nl-xpath="surveySubmissionDataACM/@question14" data-nl-bindto="xpath" /> <label> Very Dissatisfied </label></div>
                         </li>
-                    </div>
-                    <div>
+                    </ul>
+                </div>
+                <div id="rad15">
+                    <ul>
                         <li>
-                            <p>How long have you been using Adobe Campaign at Dell?<span class="required">*</span></p>
-                            <div><input id="radiogroup15" name="Radiogroup15" type="radio" value="Less than 1 year" />
-                                <label>Less than 1 year</label>
-                            </div>
-                            <div><input id="radiogroup15" name="Radiogroup15" type="radio" value="1 year to less than 3 years" /> <label>
-                                    1
-                                    year
-                                    to less than 3 years </label></div>
-                            <div><input id="radiogroup15" name="Radiogroup15" type="radio" value="3 years to less than 5 years" /> <label>
-                                    3
-                                    years
-                                    to less than 5 years </label></div>
+                            <p>15. How long have you been using Adobe Campaign at Dell?<span class="required">*</span></p>
+                            <div><input name="Radiogroup15" id="radiogroup15" type="radio" value="Less than 1 year" data-nl-ismandatory="true" data-nl-label="15. How long have you been using Adobe Campaign at Dell" data-nl-xpath="surveySubmissionDataACM/@question15" data-nl-bindto="xpath" /> <label>Less than 1 year</label></div>
+                            <div><input name="Radiogroup15" id="radiogroup15" type="radio" value="1 year to less than 3 years" data-nl-ismandatory="true" data-nl-label="15. How long have you been using Adobe Campaign at Dell" data-nl-xpath="surveySubmissionDataACM/@question15" data-nl-bindto="xpath" /> <label> 1 year to less than 3 years </label></div>
+                            <div><input name="Radiogroup15" id="radiogroup15" type="radio" value="3 years to less than 5 years" data-nl-ismandatory="true" data-nl-label="15. How long have you been using Adobe Campaign at Dell" data-nl-xpath="surveySubmissionDataACM/@question15" data-nl-bindto="xpath" /> <label> 3 years to less than 5 years </label></div>
                         </li>
-                    </div>
-                    <div>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
                         <li>
-                            <p>What is the best thing about Adobe Campaign?</p>
-                            <div><textarea name="Question16_text" class="form-control" id="question16_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea></div>
+                            <p>16. What is the best thing about Adobe Campaign?</p>
+                            <div><textarea name="Question16_text" class="form-control" id="question16_Text" maxlength="250" placeholder="Please leave your feedback." rows="3" data-nl-label="16. What is the best thing about Adobe Campaign" data-nl-xpath="surveySubmissionDataACM/@question16" data-nl-bindto="xpath"></textarea></div>
                         </li>
-                    </div>
-                    <div>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
                         <li>
-                            <p>What is the worst thing about Adobe Campaign?</p>
-                            <div><textarea name="Question17_text" class="form-control" id="question17_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea></div>
+                            <p>17. What is the worst thing about Adobe Campaign?</p>
+                            <div><textarea name="Question17_text" class="form-control" id="question17_Text" maxlength="250" placeholder="Please leave your feedback." rows="3" data-nl-label="17. What is the worst thing about Adobe Campaign" data-nl-xpath="surveySubmissionDataACM/@question17" data-nl-bindto="xpath"></textarea></div>
                         </li>
-                    </div>
-                    <div>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
                         <li>
-                            <p>If you have any other questions or feedback let us know:</p>
-                            <div><textarea name="Question18_text" class="form-control" id="question18_Text" rows="4" maxlength="250" placeholder="Please leave your feedback."></textarea></div>
+                            <p>18. If you have any other questions or feedback let us know:</p>
+                            <div><textarea name="Question18_text" class="form-control" id="question18_Text" maxlength="250" placeholder="Please leave your feedback." rows="3" data-nl-label="18. Any other questions or feedback" data-nl-xpath="surveySubmissionDataACM/@question18" data-nl-bindto="xpath"></textarea></div>
                         </li>
-                    </div>
-                </ol>
+                    </ul>
+                </div>
                 <div class="clear"></div>
-
                 <div class="disclaimer">
-                    <p>All the information provided in this survey is anonymous and the data collected will only be
-                        used
-                        for process improvement purposes.</p>
-
-                    <h5>However, if you want us to contact you about this survey please enter your e-mail address
-                        below.
-                        (Optional)</h5>
-                    <div>
-                        <input name="emailAddress" class="form-control email" id="emailAdd" maxlength="250" placeholder="e-mail@domain.com" />
-                    </div>
+                    <p>All the information provided in this survey is anonymous and the data collected will only be used for process improvement purposes.</p>
+                    <h5>However, if you want us to contact you about this survey please enter your e-mail address below. (Optional)</h5>
+                    <div><input name="emailAddress" class="form-control email" id="emailAdd" type="text" maxlength="250" placeholder="e-mail@domain.com" data-nl-label="Email Address" data-nl-xpath="surveySubmissionData/@emailAddress" data-nl-bindto="xpath" /></div>
                 </div>
                 <div class="col-md-12 validation-div" id="validation_status"></div>
-                <input class="submit_button1" id="submit_button" onclick="return validateform();" type="button" value="Submit" data-nl-transition="next" data-nl-bindto="action" data-nl-action="next" />
+                <input class="submit_button1" id="submit_button" onclick="return validateform();" type="button" value="Submit" data-nl-bindto="action" data-nl-transition="next" data-nl-action="next" />
                 <div class="clear"></div>
+            </div>
         </form>
     </div>
-
 </body>
 
 </html>
