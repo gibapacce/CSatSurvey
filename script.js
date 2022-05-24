@@ -2,7 +2,6 @@ var reqDate = getCurrentDate();
 reqDate = formatDate(reqDate, "%4Y/%2M/%2D");
 reqDatetime = formatDate(getCurrentDate(), "%4Y/%2M/%2D %02H:%02N:%02S");
 
-
 var formSubmissiondataQuery = '<webAppSurveyLog xtkschema="dell:webAppSurveyLog" _operation="insert">';
 formSubmissiondataQuery += '<surveySubmissionData emailAddress="'+ctx.vars.@emailAddress+'" ';
 formSubmissiondataQuery += 'websourceID="99999999" ';
@@ -32,5 +31,5 @@ formSubmissiondataQuery += 'question14="'+ctx.vars.@question14+'" ';
 formSubmissiondataQuery += 'question15="'+ctx.vars.@question15+'" ';
 formSubmissiondataQuery += 'question16="'+ctx.vars.@question16+'" ';
 formSubmissiondataQuery += 'question17="'+ctx.vars.@question17+'" ';
-formSubmissiondataQuery += 'question18="'+ctx.vars.@question18+'"> </surveySubmissionDataACM> </webAppSurveyLog>';
+formSubmissiondataQuery += 'question18="'+ctx.vars.@question18+'" > </surveySubmissionDataACM> </webAppSurveyLog>';
 xtk.session.Write(formSubmissiondataQuery);

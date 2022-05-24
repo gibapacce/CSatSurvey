@@ -23,105 +23,134 @@
         }
 
         function validateform() {
-            var question1 = document.uSATsurvey.Radiogroup1.value;
-            var question2 = document.uSATsurvey.Radiogroup2.value;
-            var question3 = document.uSATsurvey.Radiogroup3.value;
-            var question4_1 = document.uSATsurvey.Radiogroup4_1.value;
-            var question4_2 = document.uSATsurvey.Radiogroup4_2.value;
-            var question4_3 = document.uSATsurvey.Radiogroup4_3.value;
-            var question4_4 = document.uSATsurvey.Radiogroup4_4.value;
-            var question4_5 = document.uSATsurvey.Radiogroup4_5.value;
-            var question4_6 = document.uSATsurvey.Radiogroup4_6.value;
+            var question01 = document.uSATsurvey.Radiogroup1.value;
+            var question02 = document.uSATsurvey.Radiogroup2.value;
+            var question03 = document.uSATsurvey.Radiogroup3.value;
+            var question04_1 = document.uSATsurvey.Radiogroup4_1.value;
+            var question04_2 = document.uSATsurvey.Radiogroup4_2.value;
+            var question04_3 = document.uSATsurvey.Radiogroup4_3.value;
+            var question04_4 = document.uSATsurvey.Radiogroup4_4.value;
+            var question04_5 = document.uSATsurvey.Radiogroup4_5.value;
+            var question04_6 = document.uSATsurvey.Radiogroup4_6.value;
             var question5 = document.uSATsurvey.Question5_text.value;
-            var question6 = document.uSATsurvey.Radiogroup6.value;
-            var question7 = document.uSATsurvey.Radiogroup7.value;
-            var question8 = document.uSATsurvey.Radiogroup8.value;
+            var question06 = document.uSATsurvey.Radiogroup6.value;
+            var question07 = document.uSATsurvey.Radiogroup7.value;
+            var question08 = document.uSATsurvey.Radiogroup8.value;
             var question9 = document.uSATsurvey.Question9_text.value;
-            var question10 = document.uSATsurvey.Radiogroup10.value;
-            var question11 = document.uSATsurvey.Radiogroup11.value;
-            var question12 = document.uSATsurvey.Radiogroup12.value;
+            var question010 = document.uSATsurvey.Radiogroup10.value;
+            var question011 = document.uSATsurvey.Radiogroup11.value;
+            var question012 = document.uSATsurvey.Radiogroup12.value;
             var question13 = document.uSATsurvey.Question13_text.value;
-            var question14 = document.uSATsurvey.Radiogroup14.value;
-            var question15 = document.uSATsurvey.Radiogroup15.value;
+            var question014 = document.uSATsurvey.Radiogroup14.value;
+            var question015 = document.uSATsurvey.Radiogroup15.value;
             var question16 = document.uSATsurvey.Question16_text.value;
             var question17 = document.uSATsurvey.Question17_text.value;
             var question18 = document.uSATsurvey.Question18_text.value;
             var emailAddress = document.uSATsurvey.emailAddress.value;
 
             var errormsg = '';
-            if (question1 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            if (question01 == '') {
+                errormsg += 'Question 01 ';
                 $('#rad1').css("color", "red");
                 document.getElementById("radiogroup1").focus();
-            } else if (question2 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question02 == '') {
+                errormsg += '| Question 02 ';
                 $('#rad2').css("color", "red");
                 document.getElementById("radiogroup2").focus();
-            } else if (question3 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question03 == '') {
+                errormsg += '| Question 03 ';
                 $('#rad3').css("color", "red");
                 document.getElementById("radiogroup3").focus();
-            } else if (question4_1 == '' || question4_2 == '' || question4_3 == '' || question4_4 == '' || question4_5 == '' || question4_6 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question04_1 == '' || question04_2 == '' || question04_3 == '' || question04_4 == '' || question04_5 == '' || question04_6 == '') {
+                errormsg += '| Question 04 ';
                 $('#rad4').css("color", "red");
                 document.getElementById("radiogroup4_1").focus();
-            } else if (question6 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question06 == '') {
+                errormsg += '| Question 06 ';
                 $('#rad6').css("color", "red");
                 document.getElementById("radiogroup6").focus();
-            } else if (question7 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question07 == '') {
+                errormsg += '| Question 07 ';
                 $('#rad7').css("color", "red");
                 document.getElementById("radiogroup7").focus();
-            } else if (question8 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question08 == '') {
+                errormsg += '| Question 08 ';
                 $('#rad8').css("color", "red");
                 document.getElementById("radiogroup8").focus();
-            } else if (question10 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question010 == '') {
+                errormsg += '| Question 10 ';
                 $('#rad10').css("color", "red");
                 document.getElementById("radiogroup10").focus();
-            } else if (question11 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question011 == '') {
+                errormsg += '| Question 11 ';
                 $('#rad11').css("color", "red");
                 document.getElementById("radiogroup11").focus();
-            } else if (question12 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question012 == '') {
+                errormsg += '| Question 12 ';
                 $('#rad12').css("color", "red");
                 document.getElementById("radiogroup12").focus();
-            } else if (question14 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question014 == '') {
+                errormsg += '| Question 14 ';
                 $('#rad14').css("color", "red");
                 document.getElementById("radiogroup14").focus();
-            } else if (question15 == '') {
-                errormsg += 'Please validate if all the required(*) marqued red questions have been awnsered.';
+            }
+            if (question015 == '') {
+                errormsg += '| Question 15';
                 $('#rad15').css("color", "red");
                 document.getElementById("radiogroup15").focus();
             }
             if (errormsg != '') {
                 var div = document.getElementById('validation_status');
                 $('#validation_status').css('display', 'block');
-                div.innerHTML = errormsg;
+                div.innerHTML = 'Please verify if all of the following mandatory questions(*) have been answered: <br>' + errormsg;
                 return false;
             }
             else {
-                document.controller.setValue('/ctx/vars/@question1', question1, 'question1');
-                document.controller.setValue('/ctx/vars/@question2', question2, 'question2');
-                document.controller.setValue('/ctx/vars/@question3', question3, 'question3');
-                document.controller.setValue('/ctx/vars/@question4_1', question4_1, 'question4_1');
-                document.controller.setValue('/ctx/vars/@question4_2', question4_2, 'question4_2');
-                document.controller.setValue('/ctx/vars/@question4_3', question4_3, 'question4_3');
-                document.controller.setValue('/ctx/vars/@question4_4', question4_4, 'question4_4');
-                document.controller.setValue('/ctx/vars/@question4_5', question4_5, 'question4_5');
-                document.controller.setValue('/ctx/vars/@question4_6', question4_6, 'question4_6');
-                document.controller.setValue('/ctx/vars/@question6', question6, 'question6');
-                document.controller.setValue('/ctx/vars/@question7', question7, 'question7');
-                document.controller.setValue('/ctx/vars/@question8', question8, 'question8');
-                document.controller.setValue('/ctx/vars/@question10', question10, 'question10');
-                document.controller.setValue('/ctx/vars/@question11', question11, 'question11');
-                document.controller.setValue('/ctx/vars/@question12', question12, 'question12');
-                document.controller.setValue('/ctx/vars/@question14', question14, 'question14');
-                document.controller.setValue('/ctx/vars/@question15', question15, 'question15');
+                var question1 = document.querySelector('input[type=radio][name=Radiogroup1]:checked');
+                var question2 = document.querySelector('input[type=radio][name=Radiogroup2]:checked');
+                var question3 = document.querySelector('input[type=radio][name=Radiogroup3]:checked');
+                var question4_1 = document.querySelector('input[type=radio][name=Radiogroup4_1]:checked');
+                var question4_2 = document.querySelector('input[type=radio][name=Radiogroup4_2]:checked');
+                var question4_3 = document.querySelector('input[type=radio][name=Radiogroup4_3]:checked');
+                var question4_4 = document.querySelector('input[type=radio][name=Radiogroup4_4]:checked');
+                var question4_5 = document.querySelector('input[type=radio][name=Radiogroup4_5]:checked');
+                var question4_6 = document.querySelector('input[type=radio][name=Radiogroup4_6]:checked');
+                var question6 = document.querySelector('input[type=radio][name=Radiogroup6]:checked');
+                var question7 = document.querySelector('input[type=radio][name=Radiogroup7]:checked');
+                var question8 = document.querySelector('input[type=radio][name=Radiogroup8]:checked');
+                var question10 = document.querySelector('input[type=radio][name=Radiogroup7]:checked');
+                var question11 = document.querySelector('input[type=radio][name=Radiogroup7]:checked');
+                var question12 = document.querySelector('input[type=radio][name=Radiogroup7]:checked');
+                var question14 = document.querySelector('input[type=radio][name=Radiogroup7]:checked');
+                var question15 = document.querySelector('input[type=radio][name=Radiogroup7]:checked');
+
+                document.controller.setValue('/ctx/vars/@question1', question1.value, 'question1');
+                document.controller.setValue('/ctx/vars/@question2', question2.value, 'question2');
+                document.controller.setValue('/ctx/vars/@question3', question3.value, 'question3');
+                document.controller.setValue('/ctx/vars/@question4_1', question4_1.value, 'question4_1');
+                document.controller.setValue('/ctx/vars/@question4_2', question4_2.value, 'question4_2');
+                document.controller.setValue('/ctx/vars/@question4_3', question4_3.value, 'question4_3');
+                document.controller.setValue('/ctx/vars/@question4_4', question4_4.value, 'question4_4');
+                document.controller.setValue('/ctx/vars/@question4_5', question4_5.value, 'question4_5');
+                document.controller.setValue('/ctx/vars/@question4_6', question4_6.value, 'question4_6');
+                document.controller.setValue('/ctx/vars/@question6', question6.value, 'question6');
+                document.controller.setValue('/ctx/vars/@question7', question7.value, 'question7');
+                document.controller.setValue('/ctx/vars/@question8', question8.value, 'question8');
+                document.controller.setValue('/ctx/vars/@question10', question10.value, 'question10');
+                document.controller.setValue('/ctx/vars/@question11', question11.value, 'question11');
+                document.controller.setValue('/ctx/vars/@question12', question12.value, 'question12');
+                document.controller.setValue('/ctx/vars/@question14', question14.value, 'question14');
+                document.controller.setValue('/ctx/vars/@question15', question15.value, 'question15');
 
                 document.controller.setValue('/ctx/vars/@question5', escapeXmlStr(question5), 'question5');
                 document.controller.setValue('/ctx/vars/@question9', escapeXmlStr(question9), 'question9');
@@ -134,6 +163,7 @@
                 return document.controller.submit('next', '')
             }
         }
+
 
     </script>
 
@@ -359,7 +389,7 @@
     </style>
 </head>
 
-<body style="" class="">
+<body class="">
     <div class="container" data-nl-localizable="true">
         <div class="text-center">
             <div id="header"></div>
@@ -639,7 +669,7 @@
                     <div><input name="emailAddress" class="form-control email" id="emailAdd" type="text" maxlength="250" placeholder="e-mail@domain.com" data-nl-label="Email Address" data-nl-xpath="surveySubmissionData/@emailAddress" data-nl-bindto="xpath" /></div>
                 </div>
                 <div class="col-md-12 validation-div" id="validation_status"></div>
-                <input class="submit_button1" id="submit_button" onclick="return validateform();" type="button" value="Submit" data-nl-bindto="action" data-nl-transition="next" data-nl-action="next" />
+                <input class="submit_button1" id="submit_button" onclick="return validateform();" type="button" value="Submit" />
                 <div class="clear"></div>
             </div>
         </form>
